@@ -1,0 +1,104 @@
+.root{
+	-fx-font-size:11pt;
+}
+.label{
+	-fx-text-fill:white;
+}
+#background{
+	-fx-background-color:#252120;
+	-fx-background-image:url("Background.bmp");
+}
+#backPane{
+	-fx-background-color:#252120;
+}
+#fretNo{
+	-fx-font-family:"Android Insomnia";
+	-fx-font-size:120;
+	-fx-text-fill:#a92f41;
+}
+#chord{
+	-fx-font-family:"Android Insomnia";
+	-fx-font-size:120;
+	-fx-text-fill:#a92f41;
+}
+#modeHead{
+	-fx-font-size:21;
+	-fx-font-family:"moonhouse";
+	-fx-text-fill:#e5dfc5;
+}
+#mode{
+	-fx-font-size:21;
+	-fx-font-family:"moonhouse";
+	-fx-text-fill:#a92f41;
+}
+#midiDeviceHead{
+	-fx-font-size:15;
+	-fx-font-family:"Android Insomnia";
+	-fx-text-fill:#e5dfc5;
+}
+#midiDevice{
+	-fx-background-color:#6c6060;
+	-fx-text-fill:white;
+	-fx-font-size:10;
+	}
+.context-menu{
+	-fx-background-color:#443c3c;
+	-fx-text-fill:white;
+	-fx-font-size:10;
+}
+#deviceOn{
+	-fx-fill:red;
+}
+#statusHead{
+	-fx-font-size:18;
+	-fx-font-family:"Android Insomnia";
+	-fx-text-fill:#e5dfc5;
+}
+
+#connect{
+	-fx-font-size:10;
+	-fx-font-family:"Android Insomnia";
+	-fx-text-fill:black;
+	-fx-background-color:#c3bbbb;
+}
+#instrumentHead{
+	-fx-font-size:25;
+	-fx-font-family:"Bank Gothic";
+	-fx-text-fill:#e5dfc5;
+}
+#nextInstrument{
+	-fx-graphic: url('arrow.png');
+	-fx-background-color:#524947;
+	
+}
+.toggle-button {
+  -fx-graphic: url('power2.png');
+  -fx-pref-height:22.5px;
+  -fx-pref-width:22.5px;
+  -fx-background-color:#252120;
+}
+
+.toggle-button:selected {
+  -fx-graphic: url('power1.png');
+  -fx-max-height:22.5px;
+  -fx-max-width:22.5px;
+  -fx-background-color:#252120;
+}
+#helpButton{
+	-fx-font-size:12;
+	-fx-font-family:"Android Insomnia";
+	-fx-text-fill:black;
+	-fx-background-color:#c3bbbb;
+}
+#fretLocation{
+	-fx-fill:#820606;
+}
+#helpBack{
+	-fx-background-color:#252120;
+}
+#okButton{
+	-fx-font-size:12;
+	-fx-text-fill:black;
+	-fx-background-color:#c3bbbb;
+}
+
