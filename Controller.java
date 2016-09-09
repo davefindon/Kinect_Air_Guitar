@@ -8,6 +8,7 @@ import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
@@ -40,6 +41,8 @@ public class Controller implements Initializable {
 	@FXML
 	public static Button nextInstrument;
 	
+	@FXML
+	public static Button setButton;
 	
 	@FXML
 	public ImageView guitarImage;
@@ -51,16 +54,37 @@ public class Controller implements Initializable {
 	ToggleButton kinectPower;
 	
 	@FXML
+	ToggleButton easyToggle;
+	
+	@FXML
 	Rectangle fretLocation;
 	
 	@FXML
 	Circle deviceOn;
+	
+	@FXML
+	ChoiceBox<Integer> chord1;
+	
+	@FXML
+	ChoiceBox<Integer> chord2;
+	
+	@FXML
+	ChoiceBox<Integer> chord3;
+	
+	@FXML
+	ChoiceBox<Integer> chord4;
+	
+	@FXML
+	static CheckBox easyCheck;
+	
 	TranslateTransition transition = new TranslateTransition();
 	
 	Image steelGuitar = new Image("steel2.PNG");
 	Image electricGuitar = new Image("TELE3.PNG");
 	Image bassGuitar = new Image("bass.PNG");
 	Image classicalGuitar = new Image("nylon3.PNG");
+	
+	
 	
 	public Rectangle getFretLocation(){
 		return fretLocation;
@@ -75,9 +99,17 @@ public class Controller implements Initializable {
 		for(int i = 0;i < devices.length; i++){
 			midiDevice.getItems().add(devices[i]);
 		}
+		for(int j=0; j<13; j++){
+			chord1.getItems().add(j);
+			chord2.getItems().add(j);
+			chord3.getItems().add(j);
+			chord4.getItems().add(j);
+		};
+			
 		guitarImage.setImage(steelGuitar);
 		
     }
+
     public void connectMidi(){
     	Object selectedDevice = midiDevice.getValue();
 		try {
@@ -98,12 +130,27 @@ public class Controller implements Initializable {
     		GestureControl.playTest(args);
     		fretNo.textProperty().bind(fretValue.asString());
     		chord.textProperty().bind(chordValue);
+    		fretLocation.translateXProperty().bind(fretLocationValue);
     		instrumentHead.textProperty().bind(instrumentValue);
     	}
     	else{
     		MidiInterface.killLastNote();
     		GestureControl.stopKinect();
     	}	
+    }
+    public void toggleEasyMode(){
+    	if (easyToggle.isSelected()){
+    		GestureControl.setEasyMode();
+    	}
+    	else{
+    		GestureControl.setHardMode();
+    	}
+    }
+    public void setEasyChords(){
+    	GestureControl.setEasy1(chord1.getValue());
+		GestureControl.setEasy2(chord2.getValue());
+		GestureControl.setEasy3(chord3.getValue());
+		GestureControl.setEasy4(chord4.getValue());
     }
     public void nextInstrument() throws InvalidMidiDataException{
     	Instrument.cycleInstrument();
@@ -135,7 +182,11 @@ public class Controller implements Initializable {
     			break;
     			
     		}
+    		
     	});
+    }
+    public static void pressNextButton(){
+    	nextInstrument.fire();
     }
 	public void changeImage(){
 		int instrument = Instrument.getInstrument();
@@ -159,51 +210,67 @@ public class Controller implements Initializable {
     static int fretNumber = 0;
     static String chordName = "E";
 	static IntegerProperty fretValue = new SimpleIntegerProperty(fretNumber);
+	static IntegerProperty fretLocationValue = new SimpleIntegerProperty(fretNumber);
 	static StringProperty chordValue = new SimpleStringProperty(chordName);
 	
+	
 	static public void setFret(int fret){
+		
 		
 		Platform.runLater(()->{
 			fretValue.setValue(fret);
 			switch(fret){
 			case 0: 
 				chordValue.setValue("E");
+				fretLocationValue.setValue(20);
 				break;
 			case 1: 
 				chordValue.setValue("F");
+				fretLocationValue.setValue(60);
 				break;
 			case 2: 
 				chordValue.setValue("F#");
+				fretLocationValue.setValue(130);
 				break;
 			case 3: 
 				chordValue.setValue("G");
+				fretLocationValue.setValue(200);
 				break;
 			case 4: 
 				chordValue.setValue("G#");
+				fretLocationValue.setValue(265);
 				break;
 			case 5: 
 				chordValue.setValue("A");
+				fretLocationValue.setValue(325);
 				break;
 			case 6: 
 				chordValue.setValue("A#");
+				fretLocationValue.setValue(385);
 				break;
 			case 7: 
 				chordValue.setValue("B");
+				fretLocationValue.setValue(435);
 				break;
 			case 8: 
 				chordValue.setValue("C");
+				fretLocationValue.setValue(485);
 				break;
 			case 9: 
 				chordValue.setValue("C#");
+				fretLocationValue.setValue(535);
 				break;
 			case 10: 
 				chordValue.setValue("D");
+				fretLocationValue.setValue(585);
 				break;
 			case 11: 
 				chordValue.setValue("D#");
+				fretLocationValue.setValue(625);
 				break;
 			case 12: 
 				chordValue.setValue("E");
+				fretLocationValue.setValue(675);
 				break;
 				
 				

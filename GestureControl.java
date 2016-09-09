@@ -14,6 +14,35 @@ public class GestureControl extends J4KSDK {
 	String oldLocation = null;
 	String newLocation = null;
 	
+	static Boolean easyMode = false;
+	static int easy1=0;
+	static int easy2=0;
+	static int easy3=0;
+	static int easy4=0;
+	public static void setEasyMode(){
+		easyMode = true;
+		System.out.println("Easy mode activated");
+	};
+	public static  void setHardMode(){
+		easyMode = false;
+	};
+	public static void setEasy1(int Easy1){
+		easy1=Easy1;
+		System.out.println("Easy 1 = " + easy1);	
+	}
+	public static void setEasy2(int Easy2){
+		easy2=Easy2;
+		System.out.println("Easy 2 = " + easy2);	
+	}
+	public static void setEasy3(int Easy3){
+		easy3=Easy3;
+		System.out.println("Easy 3 = " + easy3);	
+	}
+	public static void setEasy4(int Easy4){
+		easy4=Easy4;
+		System.out.println("Easy 4 = " + easy4);	
+	}
+	
 	//Required Variable for Kinect Input
 	static GestureControl kinect=new GestureControl();
 	
@@ -57,7 +86,7 @@ public class GestureControl extends J4KSDK {
 		//Left Hand Position
 		float lHandX = skeleton.get3DJointX(Skeleton.HAND_LEFT)-chest;
 		float lHandY = skeleton.get3DJointY(Skeleton.HAND_LEFT);
-		System.out.print(lHandX);
+		//System.out.print(lHandX);
 		
 		//Shoulder Position
 		float rShoulderY = skeleton.get3DJointY(Skeleton.SHOULDER_RIGHT);
@@ -74,7 +103,7 @@ public class GestureControl extends J4KSDK {
 	private void fretNumber(float lHandX, float lHandY, float rHandX, float rHandY, float hipX, float hipY, float rShoulderY, float headPostionX) throws InvalidMidiDataException{
 		//Formula for converting input range to output fret between 0 and 12.
 		int fret = (int) (((lHandX - (-0.5))*12)/0.4);
-		System.out.println(fret);
+		//System.out.println(fret);
 		
 		//If left hand is below hip, use minor chord
 		boolean minor = false;
@@ -84,23 +113,123 @@ public class GestureControl extends J4KSDK {
 		if (fret > 12){fret = 12;};
 		if (fret <0){fret = 0;};
 		
-		//Set Fret on controller class to allow display
-		Controller.setFret(fret);
+		//If Easy mode is active, use only the frets selected
 		
-		//Set Steel guitar chord if required
-		if(Instrument.getInstrument()==0){
-			//If there is a previous chord, copy it to the old chord
-			if(Instrument.getNewSteelChord()>=0){
-				Instrument.setOldSteelChord(Instrument.getNewSteelChord());
-				Instrument.setNewSteelChord(fret+40);
+		if (easyMode){
+			if (fret ==0 || fret ==1|| fret ==2){
+				Controller.setFret(easy1);
+				//Set Steel guitar chord if required
+				if(Instrument.getInstrument()==0){
+					//If there is a previous chord, copy it to the old chord
+					if(Instrument.getNewSteelChord()>=0){
+						Instrument.setOldSteelChord(Instrument.getNewSteelChord());
+						Instrument.setNewSteelChord(easy1+40);
+					}
+					//Otherwise just set the new chord
+					else{
+						Instrument.setNewSteelChord(easy1+40);
+					}	
+				}
+				//Passing all to playing method
+				playing(rHandX, rHandY, hipX, hipY, easy1, minor, rShoulderY, headPostionX);
+				
+			
 			}
-			//Otherwise just set the new chord
-			else{
-				Instrument.setNewSteelChord(fret+40);
-			}	
+			if (fret ==3 || fret ==4|| fret ==5){
+				Controller.setFret(easy2);
+				//Set Steel guitar chord if required
+				if(Instrument.getInstrument()==0){
+					//If there is a previous chord, copy it to the old chord
+					if(Instrument.getNewSteelChord()>=0){
+						Instrument.setOldSteelChord(Instrument.getNewSteelChord());
+						Instrument.setNewSteelChord(easy2+40);
+					}
+					//Otherwise just set the new chord
+					else{
+						Instrument.setNewSteelChord(easy2+40);
+					}	
+				}
+				//Passing all to playing method
+				playing(rHandX, rHandY, hipX, hipY, easy2, minor, rShoulderY, headPostionX);
+				
+			
+			}
+			if (fret ==6 || fret ==7|| fret ==8){
+				Controller.setFret(easy3);
+				//Set Steel guitar chord if required
+				if(Instrument.getInstrument()==0){
+					//If there is a previous chord, copy it to the old chord
+					if(Instrument.getNewSteelChord()>=0){
+						Instrument.setOldSteelChord(Instrument.getNewSteelChord());
+						Instrument.setNewSteelChord(easy3+40);
+					}
+					//Otherwise just set the new chord
+					else{
+						Instrument.setNewSteelChord(easy3+40);
+					}	
+				}
+				//Passing all to playing method
+				playing(rHandX, rHandY, hipX, hipY, easy3, minor, rShoulderY, headPostionX);
+				
+			
+			}
+			if (fret ==9 || fret ==10|| fret ==11 ||fret ==12){
+				Controller.setFret(easy4);
+				//Set Steel guitar chord if required
+				if(Instrument.getInstrument()==0){
+					//If there is a previous chord, copy it to the old chord
+					if(Instrument.getNewSteelChord()>=0){
+						Instrument.setOldSteelChord(Instrument.getNewSteelChord());
+						Instrument.setNewSteelChord(easy4+40);
+					}
+					//Otherwise just set the new chord
+					else{
+						Instrument.setNewSteelChord(easy4+40);
+					}	
+				}
+				//Passing all to playing method
+				playing(rHandX, rHandY, hipX, hipY, easy4, minor, rShoulderY, headPostionX);
+				
+			
+			}
 		}
-		//Passing all to playing method
-		playing(rHandX, rHandY, hipX, hipY, fret, minor, rShoulderY, headPostionX);
+		else{
+			Controller.setFret(fret);
+			//Set Steel guitar chord if required
+			if(Instrument.getInstrument()==0){
+				//If there is a previous chord, copy it to the old chord
+				if(Instrument.getNewSteelChord()>=0){
+					Instrument.setOldSteelChord(Instrument.getNewSteelChord());
+					Instrument.setNewSteelChord(fret+40);
+				}
+				//Otherwise just set the new chord
+				else{
+					Instrument.setNewSteelChord(fret+40);
+				}	
+			}
+			//Passing all to playing method
+			playing(rHandX, rHandY, hipX, hipY, fret, minor, rShoulderY, headPostionX);
+			
+		}
+		
+		
+		//Set Fret on controller class to allow display
+		;
+		
+//		//Set Steel guitar chord if required
+//		if(Instrument.getInstrument()==0){
+//			//If there is a previous chord, copy it to the old chord
+//			if(Instrument.getNewSteelChord()>=0){
+//				Instrument.setOldSteelChord(Instrument.getNewSteelChord());
+//				Instrument.setNewSteelChord(fret+40);
+//			}
+//			//Otherwise just set the new chord
+//			else{
+//				Instrument.setNewSteelChord(fret+40);
+//			}	
+//		}
+//		//Passing all to playing method
+//		playing(rHandX, rHandY, hipX, hipY, fret, minor, rShoulderY, headPostionX);
 		
 	}
 	//Playing method allows notes to be played
@@ -138,7 +267,7 @@ public class GestureControl extends J4KSDK {
 		}
 		//Gesture - Down Strum
 		if ((newLocation == "DOWN")&&(oldLocation == "UP")){
-			
+			System.out.println("DOWN STRUM");
 			int instrument = Instrument.getInstrument();
 			switch (instrument){
 			//Acoustic Guitar
@@ -184,7 +313,7 @@ public class GestureControl extends J4KSDK {
 		}
 		//Gesture - Up Strum
 		if ((newLocation == "UP")&&(oldLocation == "DOWN")){
-			
+			System.out.println("UP STRUM");
 			int instrument = Instrument.getInstrument();
 			switch (instrument){
 			//Acoustic Guitar

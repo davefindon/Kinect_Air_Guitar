@@ -22,7 +22,7 @@
 	-fx-text-fill:#a92f41;
 }
 #modeHead{
-	-fx-font-size:21;
+	-fx-font-size:15;
 	-fx-font-family:"moonhouse";
 	-fx-text-fill:#e5dfc5;
 }
@@ -71,20 +71,36 @@
 	-fx-background-color:#524947;
 	
 }
-.toggle-button {
+#kinectPower {
   -fx-graphic: url('power2.png');
   -fx-pref-height:22.5px;
   -fx-pref-width:22.5px;
   -fx-background-color:#252120;
 }
 
-.toggle-button:selected {
+#kinectPower:selected {
   -fx-graphic: url('power1.png');
   -fx-max-height:22.5px;
   -fx-max-width:22.5px;
   -fx-background-color:#252120;
 }
+#easyToggle{
+	-fx-background-color:red;
+	-fx-max-height:10px;
+	-fx-max-width:10px;
+}
+#easyToggle:selected{
+	-fx-background-color:green;
+	-fx-max-height:10px;
+	-fx-max-width:10px;
+}
 #helpButton{
+	-fx-font-size:12;
+	-fx-font-family:"Android Insomnia";
+	-fx-text-fill:black;
+	-fx-background-color:#c3bbbb;
+}
+#setButton{
 	-fx-font-size:12;
 	-fx-font-family:"Android Insomnia";
 	-fx-text-fill:black;
@@ -100,5 +116,28 @@
 	-fx-font-size:12;
 	-fx-text-fill:black;
 	-fx-background-color:#c3bbbb;
+}
+#chord1{
+	-fx-background-color:#6c6060;
+	-fx-text-fill:white;
+	-fx-font-size:10;
+}
+#chord2{
+	-fx-background-color:#6c6060;
+	-fx-text-fill:white;
+	-fx-font-size:10;
+}
+#chord3{
+	-fx-background-color:#6c6060;
+	-fx-text-fill:white;
+	-fx-font-size:10;
+}
+#chord4{
+	-fx-background-color:#6c6060;
+	-fx-text-fill:white;
+	-fx-font-size:10;
+}
+#easyCheck{
+	-fx-padding:0px;
 }
 

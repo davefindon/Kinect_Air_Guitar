@@ -36,16 +36,51 @@
                      <children>
                         <HBox prefHeight="33.0" prefWidth="365.0">
                            <children>
-                              <Label fx:id="modeHead" text="MODE:">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </Label>
-                              <Label fx:id="mode" text="PLAYING">
-                                 <HBox.margin>
-                                    <Insets left="30.0" />
-                                 </HBox.margin>
-                              </Label>
+                              <VBox prefHeight="55.0" prefWidth="310.0">
+                                 <children>
+                                    <HBox prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label fx:id="modeHead" text="Easy Mode">
+                                             <HBox.margin>
+                                                <Insets top="15.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <ToggleButton id="easyToggle" fx:id="easyToggle" maxHeight="15.0" maxWidth="20.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#toggleEasyMode" prefHeight="15.0" prefWidth="20.0">
+                                             <HBox.margin>
+                                                <Insets left="20.0" top="15.0" />
+                                             </HBox.margin></ToggleButton>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="80.0" prefWidth="200.0">
+                                       <children>
+                                          <ChoiceBox id="chord1" fx:id="chord1" prefWidth="120.0">
+                                             <HBox.margin>
+                                                <Insets right="20.0" />
+                                             </HBox.margin>
+                                          </ChoiceBox>
+                                          <ChoiceBox id="chord2" fx:id="chord2" prefWidth="120.0">
+                                             <HBox.margin>
+                                                <Insets right="20.0" />
+                                             </HBox.margin>
+                                          </ChoiceBox>
+                                          <ChoiceBox id="chord3" fx:id="chord3" prefWidth="120.0">
+                                             <HBox.margin>
+                                                <Insets right="20.0" />
+                                             </HBox.margin>
+                                          </ChoiceBox>
+                                          <ChoiceBox id="chord4" fx:id="chord4" prefWidth="120.0">
+                                             <HBox.margin>
+                                                <Insets right="20.0" />
+                                             </HBox.margin>
+                                          </ChoiceBox>
+                                          <Button id="setButton" fx:id="setButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#setEasyChords" prefHeight="23.0" prefWidth="42.0" text="Set" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                              </VBox>
                            </children>
                            <padding>
                               <Insets left="30.0" top="10.0" />
@@ -60,7 +95,7 @@
                               </Label>
                               <ToggleButton id="kinectPower" fx:id="kinectPower" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#startKinect" prefHeight="30.0" prefWidth="53.0">
                                  <HBox.margin>
-                                    <Insets bottom="10.0" right="10.0" top="5.0" />
+                                    <Insets bottom="15.0" right="10.0" top="5.0" />
                                  </HBox.margin>
                               </ToggleButton>
                               <Button id="helpButton" fx:id="helpButton" mnemonicParsing="false" onAction="#showHelp" text="HELP">
@@ -71,6 +106,9 @@
                            </children>
                         </HBox>
                      </children>
+                     <padding>
+                        <Insets bottom="40.0" />
+                     </padding>
                   </VBox>
                   <Label fx:id="chord" prefHeight="254.0" prefWidth="331.0" text="F#" GridPane.rowIndex="1">
                      <GridPane.margin>
